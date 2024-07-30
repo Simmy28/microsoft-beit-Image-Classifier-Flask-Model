@@ -62,10 +62,10 @@ def index():
 
         # Make prediction
         prediction = predict_image(image_path)
-        image_filename = os.path.basename(image_path) # Get the filename after saving
+        image_filename = os.path.join('Images', image.filename) # Get the filename after saving
         return render_template('index.html', prediction=prediction, image_path=image_filename , form=form)
 
-    return render_template('index.html', form=form)  # Always pass the form object
+    return render_template('index.html', form=form, image_path=None)  # Always pass the form object
 
 if __name__ == '__main__':
     app.run(debug=True)

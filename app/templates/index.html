@@ -18,7 +18,9 @@
         {{ form.image.label }} {{ form.image() }}
       </div>
       <div class="image-preview">
-        <img id="img1" src="{{ url_for('static', filename='Images/2e54fc06-1ffa-42ab-8db8-1981a7d037a8.jpeg') }}" alt="Uploaded Image" />
+        {% if image_path %}
+        <img id="img1" src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Image" />
+        {% endif %}
       </div>
       {{ form.submit() }}
     </form>
