@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Image Predictor</h1>
+    <form method="post" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div class="input-group">
+        {{ form.image.label }} {{ form.image() }}
+      </div>
+      <div class="image-preview">
+        <img id="img1" src="{{ url_for('static', filename='Images/2e54fc06-1ffa-42ab-8db8-1981a7d037a8.jpeg') }}" alt="Uploaded Image" />
+      </div>
+      {{ form.submit() }}
+    </form>
+    <p id="result">{{ prediction }}</p>
+  </div>
+
+  <script>
+    let image = document.getElementById('img1');
+    let input_button = document.getElementById('image');
+
+    input_button.onchange = evt => {
+      const [file] = input_button.files;
+      if (file) {
+        image.src = URL.createObjectURL(file);
+      }
+    }
+  </script>
+</body>
+</html>
